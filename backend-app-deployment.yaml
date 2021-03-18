@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+       app: employee-app
+  template:
+     metadata: 
+         name: employee-app
+         labels: 
+            app: employee-app
+     spec:
+        containers:
+          - name: employee-app
+            image: amitfegade121/spring-boot-employee-app:1.0
+            ports:
+              - containerPort: 8080
+            env:
+              - name: RDS_HOSTNAME
+                valueFrom:
+                  configMapKeyRef:
+                     key: RDS_HOSTNAME
+                     name: backend-config     
+       
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+   name: employee-app
+spec: 
+   selector:
+      app: employee-app
+   ports:
+     - name: "8080"
+       port: 8080
+       targetPort: 8080
+
+

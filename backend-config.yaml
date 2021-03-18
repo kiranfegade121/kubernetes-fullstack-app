@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: backend-config
+data:
+  RDS_HOSTNAME: mysql
+  RDS_DATABASE: hr 

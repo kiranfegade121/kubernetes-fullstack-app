@@ -1,0 +1,1 @@
+kubectl apply -f mysql-secret.yaml,mysql-deployment.yaml,backend-config.yaml,backend-app-deployment.yaml,frontend-app-deployment.yaml
